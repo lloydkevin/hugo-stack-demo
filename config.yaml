@@ -5,16 +5,20 @@ description: Worthens Catering
 disableHugoGeneratorInject: true
 menus:
   main:
-  - identifier: about
-    name: about hugo
-    pre: <i class='fa fa-heart'></i>
-    url: /about/
-    weight: -110
-  - name: getting started
-    post: <span class='alert'>New!</span>
-    pre: <i class='fa fa-road'></i>
-    url: /getting-started/
-    weight: -100
+  - identifier: single
+    name: Single Link
+    url: "#single"
+    weight: 1
+  - identifier: dropdown
+    name: Drop down slim
+    url: "#"
+  - name: Drop Down Link 1
+    url: "#blank"
+    parent: dropdown
+  - name: Drop Down Link 2
+    url: "#blank"
+    parent: dropdown
+
   footer:
     - identifier: about
       name: about hugo

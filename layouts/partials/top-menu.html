@@ -1,0 +1,36 @@
+
+
+<!-- sidebar start -->
+
+<ul class="menu-horizontal text-left">
+    {{ $currentPage := . }}
+    {{ range .Site.Menus.main }}
+        {{ if .HasChildren }}
+            <li class="dropdown"> <span class="dropdown__trigger">{{ .Name }}</span>
+                <div class="dropdown__container">
+                    <div class="container">
+                        <div class="row">
+                            <div class="dropdown__content col-lg-2">
+                                <ul class="menu-vertical">
+                                    {{ range .Children }}
+                                        <li class="{{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}">
+                                            <a href="{{ .URL }}">{{ .Name }}</a>
+                                        </li>
+                                    {{ end }}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        {{ else }}
+            <li class="{{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}">
+                <a href="{{ .URL }}">{{ .Name }}</a>
+            </li>
+        {{ end }}
+    {{ end }}
+</ul>
+
+
+
+
