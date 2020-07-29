@@ -1,0 +1,7 @@
+{{- $jquery := resources.Get "stack/js/jquery-3.1.1.min.js" -}}
+{{- $flickity := resources.Get "stack/js/flickity.min.js" -}}
+{{- $parallax := resources.Get "stack/js/parallax.js" -}}
+{{- $smooth := resources.Get "stack/js/smooth-scroll.min.js" -}}
+{{- $scripts := resources.Get "stack/js/scripts.js" -}}
+{{- $js := slice $jquery $flickity $parallax $smooth $scripts | resources.Concat "js/scripts.js" | resources.Fingerprint "sha512" | resources.Minify -}}
+<script src="{{ $js.RelPermalink }}"></script>

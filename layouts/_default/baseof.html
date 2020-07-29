@@ -1,11 +1,3 @@
-{{- $stackinterface := resources.Get "stack/css/stack-interface.css" -}}
-{{- $socicon := resources.Get "stack/css/socicon.css" -}}
-{{- $bootstrap := resources.Get "stack/css/bootstrap.css" -}}
-{{- $flickity := resources.Get "stack/css/flickity.css" -}}
-{{- $stackinterface := resources.Get "stack/css/stack-interface.css" -}}
-{{- $themecharcoal := resources.Get "stack/css/theme-charcoal.css" -}}
-{{- $custom := resources.Get "stack/css/custom.css" -}}
-{{ $css := slice $stackinterface $socicon $bootstrap $flickity $stackinterface $themecharcoal $custom | resources.Concat "css/style.css" | resources.Fingerprint "sha512" | resources.Minify  }}
 <!doctype html>
 <html lang="{{ .Site.LanguageCode | default "en-us" }}">
 <head>
@@ -13,17 +5,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>{{ .Title }}</title>
-	{{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
-	{{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
-	<link href="{{ $css.RelPermalink }}" rel="stylesheet" type="text/css" media="all" />
-	{{ with .OutputFormats.Get "RSS" -}}
-		{{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
-	{{- end }}
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700" rel="stylesheet">
+	{{- with .Site.Params.description -}}<meta name="description" content="{{ . }}">{{- end -}}
+	{{- with .Site.Params.author -}}<meta name="author" content="{{ . }}">{{- end -}}
+	{{ partial "meta-head" . }}
 </head>
-<body>
+<body data-smooth-scroll-offset="77">
 	{{ partial "header" . }}
 	{{ block "main" . }}{{ end }}
 	{{ partial "footer" . }}
+	{{ partial "body-end" . }}
 </body>
 </html>

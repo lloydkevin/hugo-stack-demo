@@ -1,0 +1,13 @@
+{{- $stackinterface := resources.Get "stack/css/stack-interface.css" -}}
+{{- $socicon := resources.Get "stack/css/socicon.css" -}}
+{{- $bootstrap := resources.Get "stack/css/bootstrap.css" -}}
+{{- $flickity := resources.Get "stack/css/flickity.css" -}}
+{{- $stackinterface := resources.Get "stack/css/stack-interface.css" -}}
+{{- $themecharcoal := resources.Get "stack/css/theme-charcoal.css" -}}
+{{- $custom := resources.Get "stack/css/custom.css" -}}
+{{ $css := slice $stackinterface $socicon $bootstrap $flickity $stackinterface $themecharcoal $custom | resources.Concat "css/style.css" | resources.Fingerprint "sha512" | resources.Minify  }}
+    <link href="{{ $css.RelPermalink }}" rel="stylesheet" type="text/css" media="all" />
+    {{ with .OutputFormats.Get "RSS" -}}
+        {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
+    {{- end }}
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700" rel="stylesheet">
