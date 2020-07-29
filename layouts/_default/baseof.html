@@ -11,8 +11,11 @@
 </head>
 <body data-smooth-scroll-offset="77">
 	{{ partial "header" . }}
-	{{ block "main" . }}{{ end }}
-	{{ partial "footer" . }}
+
+	<div class="main-container">
+		{{ block "main" . }}{{ end }}
+		{{ partial "footer" . }}
+	</div>
 	{{ partial "body-end" . }}
 </body>
 </html>

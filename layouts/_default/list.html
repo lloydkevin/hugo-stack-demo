@@ -1,16 +1,34 @@
 {{ define "main" }}
-	<main>
-		{{ if or .Title .Content }}
-		<div>
-			{{ with .Title }}<h1>{{ . }}</h1>{{ end }}
-			{{ with .Content }}<div>{{ . }}</div>{{ end }}
-		</div>
-		{{ end }}
+	<a id="page-title" class="in-page-link"></a>
+	<section>
+		<div class="container">
+			{{ if or .Title .Content }}
+			<div>
+				{{ with .Title }}<div class="row">
+				<div class="col-md-12">
+					<h1>{{ . }}</h1>
+				</div>
+				</div>
+				{{ end }}
+				{{ with .Content }}<div class="row">
+				<div class="col-md-12">
+					<h1>{{ . }}</h1>
+				</div>
+				</div>
+				{{ end }}
+			</div>
+			{{ end }}
 
-		{{ range .Paginator.Pages }}
-			{{ .Render "summary" }}
-		{{ end }}
-		{{ partial "pagination.html" . }}
-	</main>
-{{ partial "sidebar.html" . }}
+			{{ range .Paginator.Pages }}
+				{{ .Render "summary" }}
+			{{ end }}
+
+
+			{{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
+			{{ range $paginator.Pages }}
+				{{ .Render "summary" }}
+			{{ end }}
+			{{ partial "pagination.html" . }}
+		</div>
+	</section>
 {{ end }}
