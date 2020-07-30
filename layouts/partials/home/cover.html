@@ -1,0 +1,17 @@
+{{- $values := .Params.cover -}}
+<section class="cover height-80 imagebg text-center" data-overlay="5">
+    <div class="background-image-holder background--top"> <img alt="background" src="{{ $values.background }}"> </div>
+    <div class="container pos-vertical-center">
+        <div class="row">
+            <div class="col-md-8"> <img alt="Image" class="unmarg--bottom" src="{{ $values.headline }}">
+                <h3> {{ $values.header }} </h3>
+                <a class="btn btn--primary type--uppercase" href="#"> <span class="btn__text">
+            {{ $values.button1 }}
+        </span> </a>
+                <a class="btn type--uppercase" href="#"> <span class="btn__text">
+            {{ $values.button2 }}
+        </span> </a>
+            </div>
+        </div>
+    </div>
+</section>
