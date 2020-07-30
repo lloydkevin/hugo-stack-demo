@@ -1,13 +1,13 @@
-{{- $values := .Params.our_story -}}
+{{ with .Params.our_story }}
 <section class="feature-large switchable">
     <div class="container">
         <div class="row justify-content-between">
-            <div class="col-lg-6 col-md-6"> <img alt="Image" class="border--round box-shadow-wide" src="{{ $values.image }}"> </div>
+            <div class="col-lg-6 col-md-6"> <img alt="Image" class="border--round box-shadow-wide" src="{{ .image }}"> </div>
             <div class="col-lg-5 col-md-6">
                 <div class="heading-block">
-                    <h2>{{ $values.title }}</h2>
+                    <h2>{{ .title }}</h2>
                 </div>
-                {{ range $values.blocks }}
+                {{ range .blocks }}
                 <div class="text-block">
                     <h5>{{ .title }}</h5>
                     <p> {{ .body }} </p>
@@ -17,3 +17,4 @@
         </div>
     </div>
 </section>
+{{ end }}
